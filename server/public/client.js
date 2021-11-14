@@ -67,11 +67,46 @@ let holdingNumbers = [];
 
   // Create function to get the history of all calcualtions.
     calculationHistory();
+
     }).catch (error => {
-      console.log('POST route /values', response);
+      console.log('POST route /values', error);
     });
   }
 
-    
+// Create GET route request to push the calculation results to the DOM.
+    function calcualtionResults(){
+      ajax({
+      method: 'GET',
+      url: '/results'
+    }).then ((response) => {
+      console.log('GET route /results response', response);
+// append the results to the DOM.
+      sumResults = $('#calculation').text(`${response}`)
+    }).catch (error => {
+      console.log('GETroute /values', error);
+  });
+}
+
+// Creat a function to post the history of all calculation to the DOM.
+  function calculationHistory() {
+      $.ajax({
+        method: 'GET',
+        url: '/history'
+        }).then((response) =>{
+          console.log('GET history response', response);
+// Create a new variable to append all history as a ul tag on the DOM.
+          let pastHistory = $('#history');
+          pastHistory.empty();
+// Create a loop to loop all GET responses.
+          for (let pushHistory of reponse ){
+
+
+
+          }
+
+
+}
+
+
 
 
