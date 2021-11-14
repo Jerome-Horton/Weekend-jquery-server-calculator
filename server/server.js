@@ -30,13 +30,13 @@ app.post('/calculate', (req,res) => {
 function solvingArray(){
     for (let solving of calculationArray){
       if(solving.operator  === '+'){
-        solving.answer = Number(items.numOne) + Number(items.numTwo);
+        solving.answer = Number(solving.numOne) + Number(solving.numTwo);
       }else if (solving.operator  === '-'){
-        solving.answer = Number(items.numOne) - Number(items.numTwo);
+        solving.answer = Number(solving.numOne) - Number(solving.numTwo);
       }else if (solving.operator === '*'){
-        solving.answer = Number(items.numOne) * Number(items.numTwo);
+        solving.answer = Number(solving.numOne) * Number(solving.numTwo);
       }else if (solving.operator === '/'){
-        solving.answer = Number(items.numOne) / Number(items.numTwo);
+        solving.answer = Number(solving.numOne) / Number(solving.numTwo);
     };
    }
     console.log(calculationArray);
