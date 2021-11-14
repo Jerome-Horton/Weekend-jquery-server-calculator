@@ -1,7 +1,7 @@
 $(document).ready(goTime);
 
 let buttonClicked = "";
-let holdingNumbers = [];
+let holdingArray = [];
 
 // Create new functions for calculations buttons.
 // create seperate button to solve the calculation.
@@ -21,17 +21,17 @@ let holdingNumbers = [];
 // and reassigned it the variable buttonClicked
 
     function newButton(){
-          if ($(this).attr('id') === "add-btn"){
+          if ($(this).attr('id') == "add-btn"){
           buttonClicked = "add-btn";
         }
-        else if ($(this).attr('id') == "subtractBtn"){
-          buttonClicked = "subtractBtn";
+        else if ($(this).attr('id') == "minus-btn"){
+          buttonClicked = "minus-btn";
         }
-      else if ($(this).attr('id') == "multiplyBtn"){
-          buttonClicked = "multiplyBtn";
+      else if ($(this).attr('id') == "multiply-btn"){
+          buttonClicked = "multiply-btn";
         }
-      else if ($(this).attr('id') == "divideBtn"){
-          buttonClicked = "divide"; 
+      else if ($(this).attr('id') == "divide-btn"){
+          buttonClicked = "divide-btn"; 
         }
     }
 
@@ -48,8 +48,8 @@ let holdingNumbers = [];
 
   // Push the information from the object into the empty holdingNumbers Array.
   // log it to test it.
-      holdingNumbers.push(valuesObject);
-      console.log(holdingNumbers);
+      holdingArray.push(valuesObject);
+      console.log(holdingArray);
 
   // Now, we need to send the information to the server by creating routes
   // Using the Ajax method to send the response. 
@@ -63,7 +63,7 @@ let holdingNumbers = [];
       console.log('POST route /values', response);
 
   // Ceate function to get results of calculation.
-    calcualtionResults();
+    calculationResults();
 
   // Create function to get the history of all calcualtions.
     calculationHistory();
@@ -74,14 +74,15 @@ let holdingNumbers = [];
   }
 
 // Create GET route request to push the calculation results to the DOM.
-    function calcualtionResults(){
-      ajax({
+    function calculationResults(){
+      $.ajax({
       method: 'GET',
       url: '/results'
     }).then ((response) => {
       console.log('GET route /results response', response);
-// append the results to the DOM.
-      sumResults = $('#calculation').text(`${response}`)
+// Show the results to the DOM.
+      sumResults = $('#calculation').text(response[response.length - 1])
+      console.log(response);
     }).catch (error => {
       console.log('GETroute /values', error);
   });
@@ -98,7 +99,7 @@ let holdingNumbers = [];
           let pastHistory = $('#history');
           pastHistory.empty();
 // Create a loop to loop all GET responses.
-          for (let pushHistory of reponse ){
+          for (let pushHistory of response ){
             if (pushHistory.numBtn == "add-btn") {
               buttonClicked = "+";
           }
@@ -113,7 +114,7 @@ let holdingNumbers = [];
           }
 // push all past calculations History to the DOM using pastHistory by append it.
     pastHistory.append(`
-      <li> ${pushhistory.num1} ${buttonClicked} ${pushHistory.num2} = ${pushHistory.sum}
+      <li> ${pushHistory.num1} ${buttonClicked} ${pushHistory.num2} = ${pushHistory.sum}
       </li>`)
     }
   });
