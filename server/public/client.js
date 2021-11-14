@@ -99,12 +99,24 @@ let holdingNumbers = [];
           pastHistory.empty();
 // Create a loop to loop all GET responses.
           for (let pushHistory of reponse ){
-
-
-
+            if (pushHistory.numBtn == "add-btn") {
+              buttonClicked = "+";
           }
-
-
+          else if (pushHistory.numBtn == "minus-btn") {
+              buttonClicked = "-";
+          }
+          else if (pushHistory.numBtn == "multiply-btn") {
+              buttonClicked = "*";
+          }
+          else if (pushHistory.numBtn == "divide-btn") {
+              buttonClicked = "/";
+          }
+// push all past calculations History to the DOM using pastHistory by append it.
+    pastHistory.append(`
+      <li> ${pushhistory.num1} ${buttonClicked} ${pushHistory.num2} = ${pushHistory.sum}
+      </li>`)
+    }
+  });
 }
 
 
