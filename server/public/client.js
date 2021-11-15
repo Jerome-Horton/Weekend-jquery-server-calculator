@@ -20,6 +20,7 @@ let holdingArray = [];
 // and reassigned it the variable buttonClicked
 
     function newButton(){
+      console.log('new button 🎯');
           if ($(this).attr('id') == "add-btn"){
           buttonClicked = "add-btn";
         }
