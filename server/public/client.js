@@ -13,7 +13,6 @@ let holdingArray = [];
       $('#divide-btn').on('click', newButton)
       $('#clear-btn').on('click', newButton)
       $('#equal-btn').on('click', solve)
-      calculationHistory();
     }
 
 
@@ -100,16 +99,16 @@ let holdingArray = [];
           pastHistory.empty();
 // Create a loop to loop all GET responses.
           for (let pushHistory of response ){
-            if (pushHistory.numBtn == "add-btn") {
+            if (pushHistory.numBtn === "add-btn") {
               buttonClicked = "+";
           }
-          else if (pushHistory.numBtn == "minus-btn") {
+          else if (pushHistory.numBtn === "minus-btn") {
               buttonClicked = "-";
           }
-          else if (pushHistory.numBtn == "multiply-btn") {
+          else if (pushHistory.numBtn === "multiply-btn") {
               buttonClicked = "*";
           }
-          else if (pushHistory.numBtn == "divide-btn") {
+          else if (pushHistory.numBtn === "divide-btn") {
               buttonClicked = "/";
           }
 // push all past calculations History to the DOM using pastHistory by append it.
